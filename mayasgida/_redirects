@@ -1,0 +1,6 @@
+# Eski Netlify alt alan adından özel alana yönlendirme örneği.
+# Kendi alt alan adınızı (xxxx.netlify.app) ilk satıra yazabilirsiniz:
+# https://SIZIN-SUBDOMAIN.netlify.app/*  https://www.mayasgida.com/:splat  301!
+
+# Apex'i www'ya zorla (netlify.toml ile birlikte çalışır)
+https://mayasgida.com/*   https://www.mayasgida.com/:splat   301!

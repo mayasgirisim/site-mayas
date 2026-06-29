@@ -1,0 +1,39 @@
+# ==========================================================
+#  MAYAS · mayasgida.com — Netlify yapılandırması
+# ==========================================================
+
+[build]
+  publish = "."          # Statik site: tüm dosyalar kök dizinde
+
+# --- Güvenlik & performans başlıkları ---
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+# Görseller uzun süreli önbelleğe alınır (immutable)
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# HTML her zaman taze sunulur
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# --- apex (mayasgida.com) -> www yönlendirmesi ---
+# Not: Asıl alan adı yönlendirmesini Netlify panelinde
+# "Domain management > Primary domain" ile de yapabilirsiniz.
+[[redirects]]
+  from = "https://mayasgida.com/*"
+  to = "https://www.mayasgida.com/:splat"
+  status = 301
+  force = true
+
+# Not: 404 durumunda Netlify otomatik olarak 404.html dosyasını sunar;
+# ayrı bir yönlendirme kuralı gerekmez.
